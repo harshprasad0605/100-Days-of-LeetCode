@@ -1,0 +1,37 @@
+import java.util.*;
+
+class ListNode {     
+    int val;
+    ListNode next;
+    ListNode() {}
+    ListNode(int val) { this.val = val; }
+    ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+}
+
+
+class Solution {
+
+    public ListNode removeElements(ListNode head, int val) {
+
+        // Remove matching nodes from the beginning
+        while (head != null && head.val == val) {
+            head = head.next;
+        }
+
+        ListNode curr = head;
+        ListNode pre = null;
+
+        // Remove matching nodes from the remaining list
+        while (curr != null) {
+            if (curr.val == val) {
+                pre.next = curr.next;
+            } else {
+                pre = curr;
+            }
+
+            curr = curr.next;
+        }
+
+        return head;
+    }
+}
